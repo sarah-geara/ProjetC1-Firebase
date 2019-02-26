@@ -9,9 +9,14 @@ Mise à niveau d'utilisateur anonyme : flux permettant de mettre à niveau en to
 Thèmes personnalisés: personnalisez l'apparence de FirebaseUI en fonction de votre application. De plus, comme FirebaseUI est open source, vous pouvez créer un projet et le personnaliser exactement selon vos besoins.
 Smart Lock for Passwords : Intégration automatique avec Smart Lock for Passwords pour une connexion rapide entre appareils.
 
-## Implementation de Firebase Authentication sur Android
+## Connexions
 
-Apres avoir ajoutez firebase sur votre projet Android, passer ensuite au etapes suivantes :
+Dans ce tutorat nous allons donner exemple sur le platforme Android
+
+* [Facebook Login](FacebookLogin)
+* [Google SignIn](GoogleSignIn)
+* [Twittre Login](TwitterLogin)
+
 
 ### Etape 1:
 
