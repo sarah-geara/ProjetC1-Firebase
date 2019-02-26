@@ -1,4 +1,4 @@
-## Firebase Authentication
+# Firebase Authentication
 
 FirebaseUI est une librarie construite sur le SDK d’authentification Firebase qui fournit des flux d’interface utilisateur intégrés à utiliser dans votre application. FirebaseUI offre les avantages suivants:
 
@@ -11,27 +11,51 @@ Smart Lock for Passwords : Intégration automatique avec Smart Lock for Password
 
 ## Implementation de Firebase Authentication sur Android
 
+Apres avoir ajoutez firebase sur votre projet Android, passer ensuite au etapes suivantes :
 
-### Markdown
+### Etape 1:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Ajoutez dans build.gradle au niveau app les implementations suivantes : 
 
 ```markdown
-Syntax highlighted code block
+dependencies {
+    // ...
 
-# Header 1
-## Header 2
-### Header 3
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
 
-- Bulleted
-- List
+    // Required only if Facebook login support is required
+    // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
+    implementation 'com.facebook.android:facebook-android-sdk:4.x'
 
-1. Numbered
-2. List
+    // Required only if Twitter login support is required
+    // Find the latest Twitter SDK releases here: https://goo.gl/E5wZvQ
+    implementation 'com.twitter.sdk.android:twitter-core:3.x'
+}
 
-**Bold** and _Italic_ and `Code` text
+```
+### Etape 2:
 
-[Link](url) and ![Image](src)
+Ajoutez dans votre file strings.xml les ids
+
+```markdown
+
+<resources>
+  <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+  <string name="facebook_application_id" translatable="false">YOUR_APP_ID</string>
+  <string name="facebook_login_protocol_scheme" translatable="false">fbYOUR_APP_ID</string>
+  <!-- Twitter consumer key and secret -->
+  <string name="twitter_consumer_key" translatable="false">YOUR_CONSUMER_KEY</string>
+  <string name="twitter_consumer_secret" translatable="false">YOUR_CONSUMER_SECRET</string>
+</resources>
+
+```
+
+### Etape 3:
+
+Ajoutez dans votre MainActivity.activity
+
+```markdown
+
 ```
 
 
