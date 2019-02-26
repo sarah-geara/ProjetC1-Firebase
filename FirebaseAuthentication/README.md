@@ -8,6 +8,7 @@ Liaison de compte : flux permettant de lier en toute sécurité des comptes d'ut
 Mise à niveau d'utilisateur anonyme : flux permettant de mettre à niveau en toute sécurité des utilisateurs anonymes.
 Thèmes personnalisés: personnalisez l'apparence de FirebaseUI en fonction de votre application. De plus, comme FirebaseUI est open source, vous pouvez créer un projet et le personnaliser exactement selon vos besoins.
 Smart Lock for Passwords : Intégration automatique avec Smart Lock for Passwords pour une connexion rapide entre appareils.
+[Pour plus d'information cliquez ici](https://firebase.google.com)
 
 ## Connexions
 
@@ -16,6 +17,3 @@ Dans ce tutorat nous allons donner exemple sur le platforme Android
 * [Facebook Login](FacebookLogin)
 * [Google SignIn](GoogleSignIn)
 * [Twittre Login](TwitterLogin)
-
-
-
