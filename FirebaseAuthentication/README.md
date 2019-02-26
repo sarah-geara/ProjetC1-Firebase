@@ -18,49 +18,4 @@ Dans ce tutorat nous allons donner exemple sur le platforme Android
 * [Twittre Login](TwitterLogin)
 
 
-### Etape 1:
-
-Ajoutez dans build.gradle au niveau app les implementations suivantes : 
-
-```markdown
-dependencies {
-    // ...
-
-    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
-
-    // Required only if Facebook login support is required
-    // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
-    implementation 'com.facebook.android:facebook-android-sdk:4.x'
-
-    // Required only if Twitter login support is required
-    // Find the latest Twitter SDK releases here: https://goo.gl/E5wZvQ
-    implementation 'com.twitter.sdk.android:twitter-core:3.x'
-}
-
-```
-### Etape 2:
-
-Ajoutez dans votre file strings.xml les ids
-
-```markdown
-
-<resources>
-  <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
-  <string name="facebook_application_id" translatable="false">YOUR_APP_ID</string>
-  <string name="facebook_login_protocol_scheme" translatable="false">fbYOUR_APP_ID</string>
-  <!-- Twitter consumer key and secret -->
-  <string name="twitter_consumer_key" translatable="false">YOUR_CONSUMER_KEY</string>
-  <string name="twitter_consumer_secret" translatable="false">YOUR_CONSUMER_SECRET</string>
-</resources>
-
-```
-
-### Etape 3:
-
-Ajoutez dans votre MainActivity.activity
-
-```markdown
-
-```
-
 
