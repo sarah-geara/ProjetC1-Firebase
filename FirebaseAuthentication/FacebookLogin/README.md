@@ -13,11 +13,7 @@
   - Clickez **Facebook** et sur **Enable** switch, puis **Save**.
   - Ajoutez **App Id** et **App Secret** puis **Save**.
 - Ouvrir `app/src/main/res/values/ids.xml` et remplacez la valeur de `facebook_app_id` avez celui que vous venez de creer.
-- Run the app on your device or emulator.
-    - Select the **FacebookLoginActivity** from the main screen.
-    - Click the **Sign In** button to begin.
-    - If you see text that says Facebook is disabled, make sure you are running
-      either the **facebookDebug** or **facebookRelease** variants of this sample.
+
       
 # Etape 3
 Ajoutez dans build.gradle niveau app
