@@ -5,9 +5,6 @@
 - Visitez the [Firebase Console](https://console.firebase.google.com) and navigate to your project:
   - Choisissez  **Auth** puis clickez sur **Sign In Method**.
   - Clickez **Google** puis sur **Enable** , puis clickez **Save**.
-- Run the sample app on your device or emulator.
-    - Select **GoogleSignInActivity** from the main screen.
-    - Click the **Sign In** button to begin.
 
       
 # Etape 3
@@ -22,36 +19,46 @@ Ajoutez dans build.gradle niveau app
 
 ```
 
-# Etape 2
-Ajoutez dans AndroidManifest.xml
-```sh
-  <uses-permission android:name="android.permission.INTERNET"/>
-  <application>
-  ....
-   <!-- Facebook Configuration -->
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"
-            tools:replace="android:value" />
-
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            tools:replace="android:theme" />
-   ....
- </application>
-```
-
-# Etape 6
+# Etape 4
 Ajoutez dans le file layout xml de votre activity
 ```sh
-     <com.facebook.login.widget.LoginButton
-       android:id="@+id/buttonFacebookLogin"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_centerInParent="true" />
+    <com.google.android.gms.common.SignInButton
+            android:id="@+id/signInButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            tools:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/signOutAndDisconnect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <Button
+                android:id="@+id/signOutButton"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sign_out"
+                android:theme="@style/ThemeOverlay.MyDarkButton" />
+
+            <Button
+                android:id="@+id/disconnectButton"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/disconnect"
+                android:theme="@style/ThemeOverlay.MyDarkButton" />
+        </LinearLayout>
 ```
 
 # Etape 7
@@ -118,7 +125,7 @@ Dans onstart de votre activity
     }
 ```
 # Etape 10
-Dans onstart de votre activity
+Ajoutez ces suivantes
 ```sh
    // [START auth_with_google]
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
