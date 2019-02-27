@@ -11,140 +11,94 @@ Ajoutez dans build.gradle niveau app
 
 ```
 
-# Etape 3
-Ajoutez dans ressources --> ids.xml
-```sh
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <!--
-        Your Facebook App ID. See README.
-    -->
-    <!--  TODO(developer): REPLACE -->
-    <string name="facebook_app_id">REPLACE_ME</string>
-
-    <!--
-      Your Twitter Key and Secret, see README.
-    -->
-    <!-- TODO(developer): REPLACE -->
-    <string name="twitter_consumer_key">REPLACE_ME</string>
-    <string name="twitter_consumer_secret">REPLACE_ME</string>
-</resources>
-
-```
-
-# Etape 5
+# Etape 3 
 Ajoutez dans AndroidManifest.xml
 ```sh
   <uses-permission android:name="android.permission.INTERNET"/>
   <application>
   ....
-   <!-- Facebook Configuration -->
+    <!-- [START fcm_default_icon] -->
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+             See README(https://goo.gl/l4GJaQ) for more. -->
         <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"
-            tools:replace="android:value" />
-
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            tools:replace="android:theme" />
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_stat_ic_notification" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <!-- [END fcm_default_icon] -->
+        <!-- [START fcm_default_channel] -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+        <!-- [END fcm_default_channel] -->
+        
+          <!-- [START firebase_service] -->
+        <service android:name=".java.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- [END firebase_service] -->
    ....
  </application>
 ```
 
-# Etape 6
-Ajoutez dans le file layout xml de votre activity
+# Etape 4
+Creer la classe MyFirebaseMessagingService  qui extend de FirebaseMessagingService et ajoutez dans cette classe la fonction et appelez la dans onmessagereceived pour faire la generation de votre propre notification
+
 ```sh
-     <com.facebook.login.widget.LoginButton
-       android:id="@+id/buttonFacebookLogin"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_centerInParent="true" />
-```
+     /**
+     * Create and show a simple notification containing the received FCM message.
+     *
+     * @param messageBody FCM message body received.
+     */
+    private void sendNotification(String messageBody) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                PendingIntent.FLAG_ONE_SHOT);
 
-# Etape 7
-Initialisez dans votre activity
-```sh
-    private FirebaseAuth mAuth;
-    private CallbackManager mCallbackManager;
+        String channelId = getString(R.string.default_notification_channel_id);
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this, channelId)
+                        .setSmallIcon(R.drawable.ic_stat_ic_notification)
+                        .setContentTitle(getString(R.string.fcm_message))
+                        .setContentText(messageBody)
+                        .setAutoCancel(true)
+                        .setSound(defaultSoundUri)
+                        .setContentIntent(pendingIntent);
 
-```
-Creer une fonction update ui 
-```sh
-    private void updateUI(FirebaseUser user) {
-        hideProgressDialog();
-        if (user != null) {
-            mStatusTextView.setText(getString(R.string.facebook_status_fmt, user.getDisplayName()));
-            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-            findViewById(R.id.buttonFacebookLogin).setVisibility(View.GONE);
-            findViewById(R.id.buttonFacebookSignout).setVisibility(View.VISIBLE);
-        } else {
-            mStatusTextView.setText(R.string.signed_out);
-            mDetailTextView.setText(null);
-
-            findViewById(R.id.buttonFacebookLogin).setVisibility(View.VISIBLE);
-            findViewById(R.id.buttonFacebookSignout).setVisibility(View.GONE);
+        // Since android Oreo notification channel is needed.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(channelId,
+                    "Channel human readable title",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            notificationManager.createNotificationChannel(channel);
         }
-    }
-    
-        public void signOut() {
-        mAuth.signOut();
-        LoginManager.getInstance().logOut();
 
-        updateUI(null);
+        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
+}
 ```
-Dans oncreate de votre activity
+# Etape 5
+Si vous souhaitez envoyer des messages à cette instance d'application ou gérez les abonnements à cette application côté serveur, envoyez le jeton d'identifiant d'instance sur votre serveur d'applications.
 ```sh
-       mAuth = FirebaseAuth.getInstance();
+   @Override
+    public void onNewToken(String token) {
+        Log.d(TAG, "Refreshed token: " + token);
 
-        mCallbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = findViewById(R.id.buttonFacebookLogin);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "facebook:onSuccess:" + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d(TAG, "facebook:onCancel");
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
-            
-            }
-        });
-
-```
-
-# Etape 8
-Dans onActivityResult de votre activity
-```sh
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Pass the activity result back to the Facebook SDK
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        // If you want to send messages to this application instance or
+        // manage this apps subscriptions on the server side, send the
+        // Instance ID token to your app server.
+        sendRegistrationToServer(token);
     }
+
 ```
-# Etape 9
-Dans onstart de votre activity
-```sh
-  @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
-```
+
