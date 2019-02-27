@@ -12,6 +12,7 @@ Mise à niveau d'utilisateur anonyme : flux permettant de mettre à niveau en to
 4.Thèmes personnalisés: personnalisez l'apparence de FirebaseUI en fonction de votre application. De plus, comme FirebaseUI est open source, vous pouvez créer un projet et le personnaliser exactement selon vos besoins.
 
 5.Smart Lock for Passwords : Intégration automatique avec Smart Lock for Passwords pour une connexion rapide entre appareils.
+
 [Pour plus d'information cliquez ici](https://firebase.google.com)
 
 ## Connexions
