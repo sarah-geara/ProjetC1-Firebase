@@ -13,10 +13,10 @@ Par ce biais, la plateforme permet en autre de gérer l’authentification des u
 ## Firebase Tutorials
 
 Vous trouverez ici des tutorials en relation avec la platforme android sur :
-* Firebase authentication
-* Firebase messaging
-* Firebase analytics
-* Firebase database
+* Firebase authentication pour s'authentifier avec d'autre applications comme Facebook,google,twitter...
+* Firebase messaging pour recevoir les notifications.
+* Firebase analytics pour la distingution des evenements et localisation des utilisateur dans les ecrans de votre application.
+* Firebase Crashlytics qui est un reporter léger en temps réel qui vous aide à suivre, hiérarchiser et résoudre les problèmes de stabilité afin d'améliorer la qualité de vos applications. 
 
 ## Chapitres
 
