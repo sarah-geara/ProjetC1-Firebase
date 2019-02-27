@@ -2,37 +2,16 @@
 [Ajoutez Firebase dans votre projet](https://firebase.google.com/docs/android/setup).
 
 # Etape 2
-- Visitez [Facebook Developers Site](https://developers.facebook.com) et faites ces
-  instructions pour l'installation de votre application.
-  - On vous demandera le package name, uriliser celui de votre application
-  exammple : `com.google.firebase.quickstat.usermanagement`.
-  - On vous demandera le nom de la main class 
-  example : `com.google.firebase.quickstart.usermanagement.FacebookLoginActivity`.
-- Allez sur [Firebase Console](https://console.firebase.google.com) et appuyiez sur votre projet :
-  - Choisissez **Auth** panel puis  **Sign In Method** .
-  - Clickez **Facebook** et sur **Enable** switch, puis **Save**.
-  - Ajoutez **App Id** et **App Secret** puis **Save**.
-- Ouvrir `app/src/main/res/values/ids.xml` et remplacez la valeur de `facebook_app_id` avez celui que vous venez de creer.
-- Run the app on your device or emulator.
-    - Select the **FacebookLoginActivity** from the main screen.
-    - Click the **Sign In** button to begin.
-    - If you see text that says Facebook is disabled, make sure you are running
-      either the **facebookDebug** or **facebookRelease** variants of this sample.
-      
-# Etape 3
 Ajoutez dans build.gradle niveau app
 ```sh
-   // Firebase Authentication
     implementation 'com.google.firebase:firebase-core:16.0.6'
-    implementation 'com.google.firebase:firebase-auth:16.1.0'
-   // Facebook Android SDK (only required for Facebook Login)
-   // Used in FacebookLoginActivity.
-    implementation 'com.facebook.android:facebook-login:4.39.0'
-    implementation 'com.android.support:customtabs:28.0.0'
+    implementation 'com.google.firebase:firebase-iid:17.0.4'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
 
 ```
 
-# Etape 4
+# Etape 3
 Ajoutez dans ressources --> ids.xml
 ```sh
 <?xml version="1.0" encoding="utf-8"?>
