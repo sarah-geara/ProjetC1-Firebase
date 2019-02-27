@@ -3,6 +3,21 @@
 
 # Etape 2
 
+- Allez sur [Twitter Developers Site](https://apps.twitter.com) et clickez **Create New App**
+  instructions to set up a new Android app.
+  - Ensuite allez sur **Keys and Access Tokens** tab de votre app et copiez  **Consumer Key** et **Consumer Secret**.
+- Allez sur [Firebase Console](https://console.firebase.google.com) et cliquez sur votre projet:
+  - Choisissez  **Auth** panel et puis clickez sur **Sign In Method** tab.
+  - Clickez **Twitter** et demmarez  **Enable** switch, et puis  **Save**.
+  - Ajoutez votre Twitter **Consumer Key** et **Consumer Secret** et clickez sur **Save**.
+  - Copiez le callback URL du font de la panel (Ex.
+    `https://<your-app-id>.firebaseapp.com/__/auth/handler`).
+- Naviguer retour sur votre Twitter app settings sur [Twitter Developers Site](https://apps.twitter.com). 
+  - Clickez sur  **Settings** tab et
+  coller le  callback URL de votre Firebase console.
+- Ouvrir le file `app/src/main/res/values/ids.xml` et remplacez la valeur de  **twitter_consumer_key**
+  et **witter_consumer_secret** avec la cle et secret que vous venez de mettre dans votre Firebase console.
+
 # Etape 3
 Ajoutez dans build.gradle niveau app
 ```sh
@@ -33,11 +48,21 @@ Ajoutez dans ressources --> ids.xml
 # Etape 5
 Ajoutez dans le file layout xml de votre activity
 ```sh
-     <com.facebook.login.widget.LoginButton
-       android:id="@+id/buttonFacebookLogin"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_centerInParent="true" />
+   <com.twitter.sdk.android.core.identity.TwitterLoginButton
+            android:id="@+id/buttonTwitterLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+        <Button
+            android:id="@+id/buttonTwitterSignout"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/sign_out"
+            android:theme="@style/ThemeOverlay.MyDarkButton"
+            android:visibility="gone"/>
 ```
 
 # Etape 7
