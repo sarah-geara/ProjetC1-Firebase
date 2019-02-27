@@ -44,6 +44,8 @@ Avec cette configuration de base, Crashlytics commencera automatiquement à éco
 
 Vous pouvez tester votre implémentation à l'aide de Crashlytics.getInstance (). Crash () pour provoquer un blocage de votre application. Le crash apparaîtra dans votre console Firebase comme ceci:
 
+![](crashlyticsFirebase.png)
+
 
 # Remarque
 Dans certains cas, nous voudrons activer / désactiver Crashlytics. Selon la politique de confidentialité de notre application, nous devrions désactiver Crashlytics pour les utilisateurs qui n'acceptent pas nos conditions générales et ne souhaitent pas partager leurs informations avec nous.
