@@ -1,5 +1,7 @@
 # Introdution 
 
+![](FirebaseLogo.png)
+
 Google Firebase est une plateforme de développement d’applications pour le web ou pour mobiles. Elle fournit des outils sous forme de services pour la création d’applications mobiles.
 
 La technologie utilisée est la base de données temps réel noSQL (Realtime DataBase). 
