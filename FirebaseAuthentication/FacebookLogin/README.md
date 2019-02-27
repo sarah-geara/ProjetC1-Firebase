@@ -18,7 +18,8 @@
     - Click the **Sign In** button to begin.
     - If you see text that says Facebook is disabled, make sure you are running
       either the **facebookDebug** or **facebookRelease** variants of this sample.
-# Etape 2
+      
+# Etape 3
 Ajoutez dans build.gradle niveau app
 ```sh
    // Firebase Authentication
@@ -31,7 +32,7 @@ Ajoutez dans build.gradle niveau app
 
 ```
 
-# Etape 3
+# Etape 4
 Ajoutez dans ressources --> ids.xml
 ```sh
 <?xml version="1.0" encoding="utf-8"?>
@@ -53,7 +54,7 @@ Ajoutez dans ressources --> ids.xml
 
 ```
 
-# Etape 4
+# Etape 5
 Ajoutez dans AndroidManifest.xml
 ```sh
   <uses-permission android:name="android.permission.INTERNET"/>
@@ -75,7 +76,7 @@ Ajoutez dans AndroidManifest.xml
  </application>
 ```
 
-# Etape 5
+# Etape 6
 Ajoutez dans le file layout xml de votre activity
 ```sh
      <com.facebook.login.widget.LoginButton
@@ -85,7 +86,7 @@ Ajoutez dans le file layout xml de votre activity
        android:layout_centerInParent="true" />
 ```
 
-# Etape 6
+# Etape 7
 Initialisez dans votre activity
 ```sh
     private FirebaseAuth mAuth;
@@ -93,13 +94,7 @@ Initialisez dans votre activity
 
 ```
 Creer une fonction update ui 
-    public void signOut() {
-        mAuth.signOut();
-        LoginManager.getInstance().logOut();
-
-        updateUI(null);
-    }
-
+```sh
     private void updateUI(FirebaseUser user) {
         hideProgressDialog();
         if (user != null) {
@@ -116,6 +111,14 @@ Creer une fonction update ui
             findViewById(R.id.buttonFacebookSignout).setVisibility(View.GONE);
         }
     }
+    
+        public void signOut() {
+        mAuth.signOut();
+        LoginManager.getInstance().logOut();
+
+        updateUI(null);
+    }
+```
 Dans oncreate de votre activity
 ```sh
        mAuth = FirebaseAuth.getInstance();
@@ -144,7 +147,7 @@ Dans oncreate de votre activity
 
 ```
 
-# Etape 7
+# Etape 8
 Dans onActivityResult de votre activity
 ```sh
     @Override
@@ -155,7 +158,7 @@ Dans onActivityResult de votre activity
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 ```
-# Etape 8
+# Etape 9
 Dans onstart de votre activity
 ```sh
   @Override
