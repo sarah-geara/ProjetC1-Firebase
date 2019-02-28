@@ -40,12 +40,7 @@ Ajoutez dans ressources --> ids.xml
     <!--  TODO(developer): REPLACE -->
     <string name="facebook_app_id">REPLACE_ME</string>
 
-    <!--
-      Your Twitter Key and Secret, see README.
-    -->
-    <!-- TODO(developer): REPLACE -->
-    <string name="twitter_consumer_key">REPLACE_ME</string>
-    <string name="twitter_consumer_secret">REPLACE_ME</string>
+   
 </resources>
 
 ```
