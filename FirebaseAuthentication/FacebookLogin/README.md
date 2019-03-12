@@ -1,6 +1,6 @@
 # Etape 1 
 * [Voir ici](AjoutFirebaseProjet)
-[Ajoutez Firebase dans votre projet](https://firebase.google.com/docs/android/setup).
+* [Ajoutez Firebase dans votre projet](https://firebase.google.com/docs/android/setup).
 
 # Etape 2
 - Visitez [Facebook Developers Site](https://developers.facebook.com) et faites ces
