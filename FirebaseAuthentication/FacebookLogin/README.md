@@ -1,5 +1,5 @@
 # Etape 1 
-* [Voir ici](https://github.com/sarah-geara/ProjetC1-Firebase/tree/master/AjoutFirebaseProjet)
+* [Voir ici](https://github.com/sarah-geara/ProjetC1-Firebase/tree/master/AjoutFirebaseProjet/README.md)
 * [Ajoutez Firebase dans votre projet](https://firebase.google.com/docs/android/setup).
 
 # Etape 2
