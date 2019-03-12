@@ -1,4 +1,5 @@
 # Etape 1 
+* [Voir ici](AjoutFirebaseProjet)
 [Ajoutez Firebase dans votre projet](https://firebase.google.com/docs/android/setup).
 
 # Etape 2
